@@ -6,8 +6,14 @@ class User < ApplicationRecord
 
   has_many :table_users
   has_many :tables, through: :table_users
-  has_many :rounds
-  has_many :tournaments
 
   belongs_to :role
+
+  before_save :assign_role
+
+  DEFAULT_ROLE = 'player'.freeze
+
+  def assign_role
+    self.role = Role.find_by name: DEFAULT_ROLE if role.nil?
+  end
 end
