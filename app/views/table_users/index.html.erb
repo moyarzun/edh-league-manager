@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Table users</h1>
+
+<div id="table_users">
+  <% @table_users.each do |table_user| %>
+    <%= render table_user %>
+    <p>
+      <%= link_to "Show this table user", table_user %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New table user", new_table_user_path %>
