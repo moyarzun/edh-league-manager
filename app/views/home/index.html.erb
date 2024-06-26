@@ -5,11 +5,8 @@
     <%= link_to "(Sign in)", new_user_session_path %>
     <%= link_to "(Register)", new_user_registration_path %>
 <% end %>
-<h2> My Current Tables: </h2>
-<ul>
-    <% current_user.tables.each do |table| %>
-        <% if (table.round.started_at < Time.now) && (table.round.finished_at.nil? || table.round.finished_at > Time.now) %>
-            <li><%= table.name %> - Round <%= table.round.round_number %>, Table <%= table.table_number %> <%= link_to "(Go!)", round_path(table.round) %></li>
-        <% end %>
-    <% end %>
-</ul>
+<% if current_user %>
+    <%= render "tables_list" %>
+    <%= render "admin_controls" if current_user.is_admin? %>
+    <%= link_to('Tables', tables_path) %>
+<% end %>

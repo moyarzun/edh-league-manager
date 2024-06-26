@@ -7,8 +7,11 @@
     <%= render table %>
     <p>
       <%= link_to "Show this table", table %>
+      <%= 'TODO: Register to this table' %>
     </p>
   <% end %>
 </div>
 
-<%= link_to "New table", new_table_path %>
+<% if current_user %>
+  <%= link_to "New table", new_table_path if current_user.is_admin? %>
+<% end %>
