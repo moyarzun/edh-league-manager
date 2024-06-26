@@ -65,6 +65,6 @@ class TablesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def table_params
-      params.require(:table).permit(:table_number, :tournament_id, :round_id)
+      params.require(:table).permit(:table_number)
     end
 end

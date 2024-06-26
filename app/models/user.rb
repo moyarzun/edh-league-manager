@@ -9,11 +9,16 @@ class User < ApplicationRecord
 
   belongs_to :role
 
-  before_save :assign_role
+  after_initialize :set_default_role
 
   DEFAULT_ROLE = 'player'.freeze
+  ADMIN_ROLE = 'admin'.freeze
 
-  def assign_role
-    self.role = Role.find_by name: DEFAULT_ROLE if role.nil?
+  def set_default_role
+    self.role ||= Role.find_by(name: DEFAULT_ROLE)
+  end
+
+  def is_admin?
+    self.role_id == Role.find_by(name: ADMIN_ROLE).id
   end
 end

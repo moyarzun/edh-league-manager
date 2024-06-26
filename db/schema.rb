@@ -31,7 +31,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_24_060024) do
 
   create_table "tables", force: :cascade do |t|
     t.integer "table_number"
-    t.bigint "round_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

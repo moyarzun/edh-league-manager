@@ -14,6 +14,7 @@ class UsersController < ApplicationController
   # GET /users/new
   def new
     @user = User.new
+    @roles = Role.all
   end
 
   # GET /users/1/edit
@@ -23,10 +24,9 @@ class UsersController < ApplicationController
   # POST /users or /users.json
   def create
     @user = User.new(user_params)
-    binding.pry
     respond_to do |format|
       if @user.save
-        format.html { redirect_to user_url(@user), notice: "User was successfully created." }
+        format.html { redirect_to users_url, notice: "User was successfully created." }
         format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -66,6 +66,6 @@ class UsersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def user_params
-      params.require(:user).permit(:first_name, :last_name, :username)
+      params.require(:user).permit(:first_name, :last_name, :username, :email, :password, :password_confirmation, :role_id)
     end
 end
