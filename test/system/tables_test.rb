@@ -14,9 +14,7 @@ class TablesTest < ApplicationSystemTestCase
     visit tables_url
     click_on "New table"
 
-    fill_in "Round", with: @table.round_id
     fill_in "Table number", with: @table.table_number
-    fill_in "Tournament", with: @table.tournament_id
     click_on "Create Table"
 
     assert_text "Table was successfully created"
@@ -27,9 +25,7 @@ class TablesTest < ApplicationSystemTestCase
     visit table_url(@table)
     click_on "Edit this table", match: :first
 
-    fill_in "Round", with: @table.round_id
     fill_in "Table number", with: @table.table_number
-    fill_in "Tournament", with: @table.tournament_id
     click_on "Update Table"
 
     assert_text "Table was successfully updated"
