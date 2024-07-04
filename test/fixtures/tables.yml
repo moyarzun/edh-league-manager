@@ -2,10 +2,6 @@
 
 one:
   table_number: 1
-  tournament: one
-  round: one
 
 two:
-  table_number: 1
-  tournament: two
-  round: two
+  table_number: 2
