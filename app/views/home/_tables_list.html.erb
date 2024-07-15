@@ -1,8 +1,12 @@
-<h2> My Current Tables: </h2>
-<ul>
-  <% @tables.each do |table| %>
-    <li>
-      <%= link_to table.name, table_path(table) %>
-    </li>
-  <% end %>
-</ul>
+<% if current_user.tables.empty? %>
+  <h2> No Tables Yet! </h2>
+<% else %>
+  <h2> My Current Tables: </h2>
+  <ul>
+    <% current_user.tables.each do |table| %>
+      <li>
+        <%= link_to table.name, table_path(table) %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
