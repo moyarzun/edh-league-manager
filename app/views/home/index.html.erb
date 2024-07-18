@@ -6,7 +6,6 @@
     <%= link_to "(Register)", new_user_registration_path %>
 <% end %>
 <% if current_user %>
-    <%= render "tables_list" %>
+    <%= render partial: "tables_list", locals: { tables: @tables } %>
     <%= render "admin_controls" if current_user.is_admin? %>
-    <%= link_to('Tables', tables_path) %>
 <% end %>

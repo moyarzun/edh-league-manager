@@ -57,6 +57,12 @@ class TableUsersController < ApplicationController
     end
   end
 
+  def join_table
+    @table_user = TableUser.new(table_user_params)
+    binding.pry
+    @table_user
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_table_user

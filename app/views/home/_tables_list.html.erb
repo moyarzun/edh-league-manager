@@ -1,12 +1,25 @@
-<% if current_user.tables.empty? %>
-  <h2> No Tables Yet! </h2>
-<% else %>
-  <h2> My Current Tables: </h2>
-  <ul>
-    <% current_user.tables.each do |table| %>
-      <li>
-        <%= link_to table.name, table_path(table) %>
-      </li>
-    <% end %>
-  </ul>
-<% end %>
+<h2>My Tables</h2>
+  <% if current_user.tables.empty? %>
+    <p> No Tables Yet! </p>
+  <% else %>
+    <ul>
+      <% current_user.tables.each do |table| %>
+        <li>
+          <%= link_to table.name, table_path(table) %>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
+  <h2>Open Tables:</h2>
+  <% if tables.present? %>
+    <ul>
+      <% tables.each do |table| %>
+        <li>
+          <%= link_to("Table ##{table.table_number}", table_path(table)) %> | <%= link_to('Join Table', join_table_path(table)) %>
+        </li>
+      <% end %>
+  <% else %>
+    <p> No Open Tables! </p>
+  <% end %>
+
+
