@@ -46,6 +46,7 @@ gem "bootsnap", require: false
 
 gem "devise"
 gem "delayed_job_active_record"
+gem 'rails_admin', '~> 3.0'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
@@ -71,3 +72,7 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
+gem "cssbundling-rails"
+gem "cssbundling-rails"
+gem "cssbundling-rails"
+gem "cssbundling-rails"
