@@ -5,7 +5,7 @@
     <ul>
       <% current_user.tables.each do |table| %>
         <li>
-          <%= link_to table.name, table_path(table) %>
+          <%= link_to "Table ##{table.code}", table_path(table) %> | <%= link_to 'Leave Table', table_user_path(table.table_users.find_by(user_id: current_user.id)), data: { turbo_method: :delete } %>
         </li>
       <% end %>
     </ul>
@@ -15,7 +15,7 @@
     <ul>
       <% tables.each do |table| %>
         <li>
-          <%= link_to("Table ##{table.table_number}", table_path(table)) %> | <%= link_to('Join Table', join_table_path(table)) %>
+          <%= link_to("Table ##{table.code}", table_path(table)) %> | <%= link_to('Join Table', table_users_path(table_user: { user_id: current_user.id, table_id: table.id }), data: { turbo_method: :post }) %>
         </li>
       <% end %>
   <% else %>

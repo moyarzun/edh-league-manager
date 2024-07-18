@@ -25,12 +25,14 @@ class TableUsersController < ApplicationController
 
     respond_to do |format|
       if @table_user.save
-        format.html { redirect_to table_user_url(@table_user), notice: "Table user was successfully created." }
-        format.json { render :show, status: :created, location: @table_user }
+        notice = "Table user was successfully created."
+        redirect_to request.referer || root_path # fallback a root_path si request.referer es nil
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @table_user.errors, status: :unprocessable_entity }
+        flash[:alert] = "There was a problem creating the Table user."
       end
+    rescue ActiveRecord::RecordNotUnique
+      flash[:alert] = "User already registered for this table."
+      redirect_to request.referer || root_path # fallback a root_path si request.referer es nil
     end
   end
 
@@ -52,14 +54,14 @@ class TableUsersController < ApplicationController
     @table_user.destroy!
 
     respond_to do |format|
-      format.html { redirect_to table_users_url, notice: "Table user was successfully destroyed." }
+      flash[:notice] = "Table user was successfully destroyed."
+      redirect_to request.referer || root_path # fallback a root_path si request.referer es nil
       format.json { head :no_content }
     end
   end
 
   def join_table
     @table_user = TableUser.new(table_user_params)
-    binding.pry
     @table_user
   end
 
